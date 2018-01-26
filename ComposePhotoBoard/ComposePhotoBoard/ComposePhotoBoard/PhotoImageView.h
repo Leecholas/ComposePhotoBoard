@@ -10,7 +10,11 @@
 @class PhotoImageView;
 
 @protocol PhotoImageViewDelegate <NSObject>
-- (void)deletePhotoImage:(PhotoImageView *)photoImageView;
+// 删除按钮点击
+- (void)photoImageDeleteAction:(PhotoImageView *)photoImageView;
+@optional
+// 照片点击
+- (void)photoImageTapAction:(PhotoImageView *)photoImageView;
 @end
 
 @interface PhotoImageView : UIImageView

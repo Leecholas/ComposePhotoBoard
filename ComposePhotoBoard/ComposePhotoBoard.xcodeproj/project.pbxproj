@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E43C6B0D2003721100569B64 /* ImageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43C6B0C2003721100569B64 /* ImageBrowserView.m */; };
+		E4870A9520118F2D00DF7E48 /* ImageBrowserViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4870A9420118F2D00DF7E48 /* ImageBrowserViewCell.m */; };
 		E4DDCEC61FFB64470061A1A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DDCEC51FFB64470061A1A6 /* AppDelegate.m */; };
 		E4DDCEC91FFB64470061A1A6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DDCEC81FFB64470061A1A6 /* ViewController.m */; };
 		E4DDCECC1FFB64470061A1A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4DDCECA1FFB64470061A1A6 /* Main.storyboard */; };
@@ -19,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E43C6B0B2003721100569B64 /* ImageBrowserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageBrowserView.h; sourceTree = "<group>"; };
+		E43C6B0C2003721100569B64 /* ImageBrowserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageBrowserView.m; sourceTree = "<group>"; };
+		E4870A9320118F2D00DF7E48 /* ImageBrowserViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageBrowserViewCell.h; sourceTree = "<group>"; };
+		E4870A9420118F2D00DF7E48 /* ImageBrowserViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageBrowserViewCell.m; sourceTree = "<group>"; };
 		E4DDCEC11FFB64470061A1A6 /* ComposePhotoBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComposePhotoBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4DDCEC41FFB64470061A1A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E4DDCEC51FFB64470061A1A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -49,6 +55,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4870A96201B1CF100DF7E48 /* ImageBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				E43C6B0B2003721100569B64 /* ImageBrowserView.h */,
+				E43C6B0C2003721100569B64 /* ImageBrowserView.m */,
+				E4870A9320118F2D00DF7E48 /* ImageBrowserViewCell.h */,
+				E4870A9420118F2D00DF7E48 /* ImageBrowserViewCell.m */,
+			);
+			path = ImageBrowser;
+			sourceTree = "<group>";
+		};
+		E4870A97201B1D1A00DF7E48 /* ComposePhotoBoard */ = {
+			isa = PBXGroup;
+			children = (
+				E4DDCEDA1FFB64DD0061A1A6 /* ComposePhotoView.h */,
+				E4DDCEDD1FFB64DD0061A1A6 /* ComposePhotoView.m */,
+				E4DDCEDB1FFB64DD0061A1A6 /* PhotoImageView.h */,
+				E4DDCEDE1FFB64DD0061A1A6 /* PhotoImageView.m */,
+			);
+			path = ComposePhotoBoard;
+			sourceTree = "<group>";
+		};
 		E4DDCEB81FFB64470061A1A6 = {
 			isa = PBXGroup;
 			children = (
@@ -74,10 +102,8 @@
 				E4DDCEC51FFB64470061A1A6 /* AppDelegate.m */,
 				E4DDCEC71FFB64470061A1A6 /* ViewController.h */,
 				E4DDCEC81FFB64470061A1A6 /* ViewController.m */,
-				E4DDCEDA1FFB64DD0061A1A6 /* ComposePhotoView.h */,
-				E4DDCEDD1FFB64DD0061A1A6 /* ComposePhotoView.m */,
-				E4DDCEDB1FFB64DD0061A1A6 /* PhotoImageView.h */,
-				E4DDCEDE1FFB64DD0061A1A6 /* PhotoImageView.m */,
+				E4870A97201B1D1A00DF7E48 /* ComposePhotoBoard */,
+				E4870A96201B1CF100DF7E48 /* ImageBrowser */,
 				E4DDCECA1FFB64470061A1A6 /* Main.storyboard */,
 				E4DDCECD1FFB64470061A1A6 /* Assets.xcassets */,
 				E4DDCECF1FFB64470061A1A6 /* LaunchScreen.storyboard */,
@@ -160,7 +186,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4DDCEE01FFB64DD0061A1A6 /* UIView+Frame.m in Sources */,
+				E43C6B0D2003721100569B64 /* ImageBrowserView.m in Sources */,
 				E4DDCEE21FFB64DD0061A1A6 /* PhotoImageView.m in Sources */,
+				E4870A9520118F2D00DF7E48 /* ImageBrowserViewCell.m in Sources */,
 				E4DDCEC91FFB64470061A1A6 /* ViewController.m in Sources */,
 				E4DDCED41FFB64470061A1A6 /* main.m in Sources */,
 				E4DDCEC61FFB64470061A1A6 /* AppDelegate.m in Sources */,
@@ -299,8 +327,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74A743AUE6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/limeng/Desktop/ComposePhotoBoard/ComposePhotoBoard/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/limeng/Documents/Lee/GitHub/ComposePhotoBoard/ComposePhotoBoard/ComposePhotoBoard/PrefixHeader.pch;
 				INFOPLIST_FILE = ComposePhotoBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Leecholas.ComposePhotoBoard;
@@ -314,8 +343,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74A743AUE6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/limeng/Desktop/ComposePhotoBoard/ComposePhotoBoard/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/limeng/Documents/Lee/GitHub/ComposePhotoBoard/ComposePhotoBoard/ComposePhotoBoard/PrefixHeader.pch;
 				INFOPLIST_FILE = ComposePhotoBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Leecholas.ComposePhotoBoard;

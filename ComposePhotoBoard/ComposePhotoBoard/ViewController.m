@@ -29,7 +29,8 @@
 - (void)addButtonClicked:(UIButton *)sender {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
-    imagePickerController.allowsEditing = YES;
+//    imagePickerController.allowsEditing = YES;
+    imagePickerController.allowsEditing = NO;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
@@ -37,7 +38,8 @@
 #pragma mark -- UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.navigationController.navigationBar.userInteractionEnabled = NO;
-    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+//    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [_photoView addPhoto:image];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

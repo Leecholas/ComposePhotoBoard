@@ -49,8 +49,4 @@
 - (CGRect)convertRect:(CGRect)rect toViewOrWindow:(UIView *)view;
 - (CGRect)convertRect:(CGRect)rect fromViewOrWindow:(UIView *)view;
 
-@property (nonatomic, copy)void(^completion)(void);
-/// 添加引导图片
-- (void)addGuideImageView:(NSString *)imageName frame:(CGRect)frame dismissCompletion:(void (^)())completion;
-
 @end

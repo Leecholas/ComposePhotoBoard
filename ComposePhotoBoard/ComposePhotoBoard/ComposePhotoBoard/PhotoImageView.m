@@ -20,6 +20,9 @@ static CGFloat deleteBtnWH = 23; //删除按钮的宽高
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipsToBounds = YES;
+        
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _deleteButton.frame = CGRectMake(self.width - deleteBtnWH - 3, 3, deleteBtnWH, deleteBtnWH);
         //        [_deleteButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -27,14 +30,22 @@ static CGFloat deleteBtnWH = 23; //删除按钮的宽高
         [_deleteButton setTitle:@"×" forState:UIControlStateNormal];
         [_deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_deleteButton];
+        
+        [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureAction:)]];
     }
     return self;
 }
 
 #pragma mark - Action
 - (void)deleteButtonAction:(UIButton *)sender {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(deletePhotoImage:)]) {
-        [self.delegate deletePhotoImage:self];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(photoImageDeleteAction:)]) {
+        [self.delegate photoImageDeleteAction:self];
+    }
+}
+
+- (void)tapGestureAction:(UITapGestureRecognizer *)tapGesture {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(photoImageTapAction:)]) {
+        [self.delegate photoImageTapAction:self];
     }
 }
 

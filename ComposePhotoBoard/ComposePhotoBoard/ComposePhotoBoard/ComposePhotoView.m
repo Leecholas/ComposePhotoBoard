@@ -8,6 +8,7 @@
 
 #import "ComposePhotoView.h"
 #import "PhotoImageView.h"
+#import "ImageBrowserView.h"
 
 static NSInteger columnCount = 4; //列数，每行有几张照片
 static CGFloat photoWH = 84; //photoView的宽高
@@ -16,6 +17,7 @@ static CGFloat photoMargin = 10; //左右边距
 @interface ComposePhotoView ()<PhotoImageViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<UIImage *> *photos; //照片数
+@property (nonatomic, strong) NSMutableArray<PhotoImageView *> *photoImageViewArray;
 @property (nonatomic, strong) UIButton *addButton;
 
 @end
@@ -28,7 +30,7 @@ static CGFloat photoMargin = 10; //左右边距
         self.backgroundColor = [UIColor grayColor];
         
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_addButton setBackgroundColor:[UIColor greenColor]];
+        [_addButton setBackgroundColor:[UIColor whiteColor]];
         [_addButton setTitle:@"+" forState:UIControlStateNormal];
         [_addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         //        [_addButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -36,6 +38,7 @@ static CGFloat photoMargin = 10; //左右边距
         [self addSubview:_addButton];
         
         _photos = [NSMutableArray array];
+        _photoImageViewArray = [NSMutableArray array];
         [self setupSubViews];
         self.height = [ComposePhotoView heightForComposePhotoViewWithPhotoCount:_photos.count];
     }
@@ -50,6 +53,10 @@ static CGFloat photoMargin = 10; //左右边距
                 [subView removeFromSuperview];
             }
         }
+    }
+    
+    if (_photoImageViewArray.count > 0) {
+        [_photoImageViewArray removeAllObjects];
     }
     
     // 有照片就重新布局
@@ -74,6 +81,7 @@ static CGFloat photoMargin = 10; //左右边距
             photoView.tag = i;
             photoView.userInteractionEnabled = YES; //不开交互照片上的删除按钮无法点击
             [self addSubview:photoView];
+            [_photoImageViewArray addObject:photoView];
         }
     }
     // 没有照片就只布局加号按钮
@@ -82,17 +90,20 @@ static CGFloat photoMargin = 10; //左右边距
     }
 }
 
+// 添加照片
 - (void)addPhoto:(UIImage *)photo {
     [_photos addObject:photo];
     [self setupSubViews];
     self.height = [ComposePhotoView heightForComposePhotoViewWithPhotoCount:_photos.count];
 }
 
+// 计算ComposePhotoView的高度
 + (CGFloat)heightForComposePhotoViewWithPhotoCount:(NSInteger)photoCount {
     NSInteger row = photoCount/columnCount + 1;
     return row * photoWH + (row - 1) * photoMargin + 2 * photoMargin;
 }
 
+// 照片张数，用于计算ComposePhotoView的高度
 - (NSInteger)photoCount {
     return _photos.count;
 }
@@ -105,10 +116,18 @@ static CGFloat photoMargin = 10; //左右边距
 }
 
 #pragma mark - PhotoImageViewDelegate
-- (void)deletePhotoImage:(PhotoImageView *)photoImageView {
+- (void)photoImageDeleteAction:(PhotoImageView *)photoImageView {
     [_photos removeObjectAtIndex:photoImageView.tag];
     [self setupSubViews];
     self.height = [ComposePhotoView heightForComposePhotoViewWithPhotoCount:_photos.count];
+}
+
+- (void)photoImageTapAction:(PhotoImageView *)photoImageView {
+    photoImageView.userInteractionEnabled = NO;
+    ImageBrowserView *browserView = [[ImageBrowserView alloc] init];
+    [browserView presentWithImageArray:_photos imageViewArray:_photoImageViewArray fromImageView:photoImageView fromIndex:photoImageView.tag completion:^{
+        photoImageView.userInteractionEnabled = YES;
+    }];
 }
 
 @end

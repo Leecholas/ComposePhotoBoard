@@ -235,41 +235,4 @@
     return rect;
 }
 
-
-- (void)addGuideImageView:(NSString *)imageName frame:(CGRect)frame dismissCompletion:(void (^)())completion {
-    
-    NSString *storedImageName = [NSString stringWithFormat:@"firstGuide%@", imageName];
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:storedImageName]) {return;}
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:storedImageName];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
-    imageView.userInteractionEnabled = YES;
-    imageView.image = [UIImage imageNamed:imageName];
-    [self addSubview: imageView];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickAction:)];
-    [imageView addGestureRecognizer:tap];
-    if (completion) {
-        self.completion = completion;
-    }
-    
-}
-
-- (void)clickAction:(UITapGestureRecognizer *)tap {
-    UIView *imageView = tap.view;
-    [imageView removeFromSuperview];
-    if (self.completion) {
-        self.completion();
-    }
-}
-
-static char associatedObjectKey;
-- (void)setCompletion:(void (^)(void))completion {
-    objc_setAssociatedObject(self, &associatedObjectKey, completion, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
-- (void (^)(void))completion {
-    return objc_getAssociatedObject(self, &associatedObjectKey);
-}
-
 @end
